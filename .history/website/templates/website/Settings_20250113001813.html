@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings | AI-Powered Driver Hiring System</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'settings.css' %}">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar {
+      background: linear-gradient(145deg, #ffffff, #e0e0e0);
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.7);
+      height: 100vh;
+      border-right: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .sidebar img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar h6 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .sidebar .nav-link {
+      font-size: 16px;
+      color: #666;
+      padding: 10px 16px;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .sidebar .nav-link:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e9ecef;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+   <div class="row">
+     <!-- Sidebar -->
+     <div class="col-md-3 col-lg-2 sidebar">
+       <div class="text-center p-3">
+         <img src="https://via.placeholder.com/50" alt="Logo" class="mb-3">
+         <h6>Account Settings</h6>
+       </div>
+       <ul class="nav flex-column px-2">
+         <li class="nav-item">
+           <a href="#" class="nav-link active">
+             <i class="fas fa-cog"></i> Settings
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="/profile/" class="nav-link">
+             <i class="fas fa-user"></i> Profile
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="fas fa-bell"></i> Notifications
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="fas fa-lock"></i> Security
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="fas fa-sign-out-alt"></i> Logout
+           </a>
+         </li>
+       </ul>
+     </div>
+
+     <!-- Main Content -->
+     <div class="col-md-9 col-lg-10 p-4">
+       <!-- Profile Section -->
+       {% if user.is_authenticated %}
+         {% if user.role == 'driver' %}
+           <!-- Driver Profile -->
+           <div class="profile-popup">
+             <div class="profile-popup-header">
+               <img src="{{ user.profile_picture }}" alt="Driver Picture">
+               <h4>{{ user.name }}</h4>
+               <p>{{ user.email }}</p>
+             </div>
+             <div class="profile-popup-body">
+               <p class="info">Driver ID: {{ user.driver_id }}</p>
+               <p class="info">Experience: {{ user.experience }} Years</p>
+               <p class="info">Rating: {{ user.rating }}/5</p>
+               <div>
+                 <a href="/driver-dashboard" class="btn btn-link">Dashboard</a>
+                 <a href="/completed-rides" class="btn btn-link">Completed Rides</a>
+               </div>
+             </div>
+             <div class="profile-popup-footer">
+               <a href="/update-driver-profile">Update Profile</a>
+               <button class="btn-signout">Sign Out</button>
+             </div>
+           </div>
+         {% elif user.role == 'car_owner' %}
+           <!-- Car Owner Profile -->
+           <div class="profile-popup">
+             <div class="profile-popup-header car-owner">
+               <img src="{{ user.profile_picture }}" alt="Car Owner Picture">
+               <h4>{{ user.name }}</h4>
+               <p>{{ user.email }}</p>
+             </div>
+             <div class="profile-popup-body">
+               <p class="info">Owner ID: {{ user.owner_id }}</p>
+               <p class="info">Cars Listed: {{ user.cars_listed }}</p>
+               <p class="info">Active Listings: {{ user.active_listings }}</p>
+               <div>
+                 <a href="/owner-dashboard" class="btn btn-link car-owner-link">Dashboard</a>
+                 <a href="/list-car" class="btn btn-link car-owner-link">List a Car</a>
+               </div>
+             </div>
+             <div class="profile-popup-footer">
+               <a href="/update-owner-profile" class="car-owner-link">Update Profile</a>
+               <button class="btn-signout">Sign Out</button>
+             </div>
+           </div>
+         {% endif %}
+       {% else %}
+         <p>Please <a href="/login/">log in</a> to view your profile.</p>
+       {% endif %}
+     </div>
+   </div>
+</div>
+
+<footer>
+  <p>&copy; {{ current_year }} AI Driver Hiring System | All Rights Reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

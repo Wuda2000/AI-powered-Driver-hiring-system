@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximize Your Earnings as a Car Owner</title>
+    <!-- Bootstrap 4.5 CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .header, .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header h1, .footer h3 {
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .offer, .testimonial, .faq {
+            margin-bottom: 15px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #218838;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .car-listing-gallery {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .car-listing {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: 30%;
+            background-color: #fafafa;
+            transition: transform 0.3s;
+        }
+        .car-listing img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .car-listing .details {
+            margin-top: 10px;
+        }
+        .car-listing:hover {
+            transform: scale(1.05);
+        }
+        .social-proof {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .social-proof .reviews {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-proof .reviews .review {
+            width: 45%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .testimonial, .faq {
+            margin-top: 20px;
+        }
+        .map-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .map {
+            width: 100%;
+            height: 300px;
+            background-color: #eee;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+            .car-listing-gallery {
+                flex-direction: column;
+            }
+            .car-listing {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Driver Hire Platform</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Driver Hire Registration</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login/Sign Up</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="introduction">
+        <p>Need a driver for a day, a week, or longer? Our platform connects you with skilled drivers for temporary hire, ensuring safety and convenience for your travels.</p>
+    </div>
+
+    <div class="unique-offers">
+        <h2>Why Hire Drivers Through Us?</h2>
+        <ul>
+            <li><strong>Verified Professionals:</strong> All drivers are background-checked and certified.</li>
+            <li><strong>Flexible Hiring:</strong> Hire drivers based on your schedule and requirements.</li>
+            <li><strong>Affordable Rates:</strong> Competitive pricing with no hidden charges.</li>
+        </ul>
+    </div>
+
+    <div class="technology-integration">
+        <h2>Enhanced Service with MyHire-CONNECT®</h2>
+        <p>Monitor your trip and communicate seamlessly with the driver through our advanced tracking and messaging system.</p>
+    </div>
+
+    <div class="step-by-step-guide">
+        <h2>How It Works</h2>
+        <ol>
+            <li>Register on our platform as a car owner.</li>
+            <li>Post your driving needs, including duration and location.</li>
+            <li>Choose from a list of qualified drivers and confirm your booking.</li>
+        </ol>
+    </div>
+
+    <div class="driver-listing-gallery">
+        <h2>Available Drivers</h2>
+        <div class="car-listing-gallery">
+            <div class="car-listing">
+                <img src="{% static 'images/driver1.jpeg' %}" alt="Driver Image">
+                <div class="details">
+                    <h3>John Doe</h3>
+                    <p>Experience: 5 years</p>
+                    <p>Specialization: Long-distance and urban driving</p>
+                    <a href="#" class="cta-button">Hire Now</a>
+                </div>
+            </div>
+            <div class="car-listing">
+                <img src="{% static 'images/driver2.jpeg' %}" alt="Driver Image">
+                <div class="details">
+                    <h3>Jane Smith</h3>
+                    <p>Experience: 3 years</p>
+                    <p>Specialization: Corporate travel</p>
+                    <a href="#" class="cta-button">Hire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <blockquote>"Hiring a driver was so easy, and I felt completely safe throughout the journey!" - Alex K.</blockquote>
+    </div>
+
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <p><strong>Q:</strong> How do I verify the driver's credentials?<br><strong>A:</strong> All drivers on our platform are background-checked, and their profiles include verified ratings and reviews.</p>
+        <p><strong>Q:</strong> Can I hire a driver for multiple days?<br><strong>A:</strong> Yes, you can specify the duration when posting your job.</p>
+    </div>
+
+    <div class="call-to-action">
+        <a href="#" class="cta-button">Find Your Driver Now!</a>
+    </div>
+</div>
+
+<div class="footer">
+    <h3>Contact Us | Follow Us on Social Media</h3>
+    <a href="#">Facebook</a>
+    <a href="#">Twitter</a>
+    <a href="#">Instagram</a>
+    <br><br>
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+</div>
+
+<!-- Bootstrap 4.5 JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

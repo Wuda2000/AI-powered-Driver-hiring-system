@@ -1,0 +1,62 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Light background for better contrast */
+    margin: 0;
+    padding: 0;
+}
+
+/* Carousel Styles */
+.carousel-item img {
+    width: 100%;
+    height: auto; /* Ensures images maintain aspect ratio */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text readability */
+    padding: 15px;
+}
+
+.carousel-indicators button {
+    background-color: #007bff; /* Bootstrap primary color */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #007bff; /* Bootstrap primary color */
+}
+
+/* Container Styles */
+.container-fluid {
+    padding: 2rem; /* Increased padding for better spacing */
+}
+
+/* Headings */
+h3 {
+    font-size: 2rem;
+    color: #343a40; /* Darker text for better visibility */
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6; /* Improved readability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h3 {
+        font-size: 1.5rem; /* Smaller heading on mobile devices */
+    }
+
+    p {
+        font-size: 1rem; /* Adjust paragraph size on mobile */
+    }
+}
+
+/* Footer Styles (if applicable) */
+footer {
+    background-color: #343a40; /* Dark footer for contrast */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}

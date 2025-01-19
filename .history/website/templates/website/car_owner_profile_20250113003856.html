@@ -1,0 +1,21 @@
+<div class="profile-popup">
+    <div class="profile-popup-header car-owner">
+      <img src="https://via.placeholder.com/80" alt="Car Owner Picture">
+      <h4>{{ name }}</h4>
+      <p>{{ email }}</p>
+    </div>
+    <div class="profile-popup-body">
+      <p class="info">Owner ID: {{ role_id }}</p>
+      <p class="info">Cars Listed: {{ cars_listed }}</p>
+      <p class="info">Active Listings: {{ active_listings }}</p>
+      <div>
+        <a href="/owner-dashboard" class="btn btn-link car-owner-link">Dashboard</a>
+        <a href="/list-car" class="btn btn-link car-owner-link">List a Car</a>
+      </div>
+    </div>
+    <div class="profile-popup-footer">
+      <a href="/update-owner-profile" class="car-owner-link">Update Profile</a>
+      <button class="btn-signout">Sign Out</button>
+    </div>
+  </div>
+  

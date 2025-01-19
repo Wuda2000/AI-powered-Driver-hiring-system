@@ -1,0 +1,1356 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings | AI-Powered Driver Hiring System</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'settings.css' %}">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .sidebar {
+      background: linear-gradient(145deg, #ffffff, #e0e0e0);
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.7);
+      height: 100vh;
+      border-right: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .sidebar img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar h6 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .sidebar .nav-link {
+      font-size: 16px;
+      color: #666;
+      padding: 10px 16px;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .sidebar .nav-link:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e9ecef;
+    }
+    
+    /* Additional styles for form elements */
+    .form-control {
+        border-radius: .25rem; 
+        box-shadow: none; 
+        transition: border-color .15s ease-in-out; 
+    }
+    
+    .btn-custom {
+        border-radius: .25rem; 
+        padding-left: .75rem; 
+        padding-right:.75rem; 
+        transition:.2s; 
+        box-shadow:none; 
+    }
+    
+    .btn-custom:hover {
+        background-color:#0056b3; 
+        color:white; 
+        transform:.05s; 
+        box-shadow:none; 
+    }
+
+    .profile-popup {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .profile-popup-header {
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .profile-popup-header.driver {
+      background-color: #28a745; /* Green for drivers */
+    }
+
+    .profile-popup-header.car-owner {
+      background-color: #007bff; /* Blue for car owners */
+    }
+
+    .profile-popup-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-top: -40px;
+      border: 3px solid white;
+    }
+
+    .profile-popup-body {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .profile-popup-body h5 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .profile-popup-body p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .profile-popup-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #ddd;
+    }
+
+    .profile-popup-footer a {
+      font-size: 14px;
+      color: #28a745; /* Green link */
+      text-decoration: none;
+    }
+    
+   .btn-signout {
+     padding:10px; 
+     background:#dc3545; 
+     color:white; 
+     border:none; 
+     border-radius:.25rem; 
+     transition:.2s; 
+     cursor:pointer; 
+   }
+  
+   .btn-signout:hover { 
+     background:#c82333; 
+   }
+    
+</style>
+</head>
+<body>
+<div class="container-fluid">
+   <div class="row">
+     <!-- Sidebar -->
+     <div class="col-md-3 col-lg-2 sidebar">
+       <div class="text-center p-3">
+         <img src="https://via.placeholder.com/50" alt="Logo" class="mb-3">
+         <h6>Account Settings</h6>
+       </div>
+       <ul class="nav flex-column px-2">
+         <li class="nav-item">
+           <a href="#" class="nav-link active">
+             <i class="fas fa-cog"></i> Settings
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+             <i class="fas fa-user"></i> Login
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="fas fa-bell"></i> Notifications
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="fas fa-lock"></i> Security
+           </a>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="fas fa-sign-out-alt"></i> Logout
+           </a>
+         </li>
+       </ul>
+     </div>
+
+     <!-- Main Content -->
+     <div class="col-md-9 col-lg-10 p-4 position-relative">
+
+       <!-- Account Card -->
+       {% if user.is_authenticated %}
+       {% if user.role == "driver" %}
+       <!-- Driver Profile Card -->
+       <div class="profile-popup mb-4">
+         <div class="profile-popup-header driver">
+           <img src="{{ user.userprofile.profile_picture.url }}" alt="Driver Picture">
+           <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+           <p>{{ user.email }}</p>
+         </div>
+         <div class="profile-popup-body">
+           <p class="info">Driver ID: {{ user.driver_id }}</p> <!-- Assuming driver_id is available -->
+           <p class="info">Experience: {{ user.userprofile.experience }} Years</p> <!-- Assuming experience is available -->
+           <div>
+             <a href="/driver-dashboard" class="btn btn-link">Dashboard</a>
+             <a href="/completed-rides" class="btn btn-link">Completed Rides</a>
+           </div>
+         </div>
+         <div class="profile-popup-footer">
+           <a href="/update-driver-profile">Update Profile</a>
+           <button class="btn-signout">Sign Out</button>
+         </div>
+       </div>
+
+       {% elif user.role == "car_owner" %}
+       <!-- Car Owner Profile Card -->
+       <div class="profile-popup mb-4">
+         <div class="profile-popup-header car-owner">
+           <img src="{{ user.userprofile.profile_picture.url }}" alt="Car Owner Picture">
+           <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+           <p>{{ user.email }}</p>
+         </div>
+         <div class="profile-popup-body">
+           <p class="info">Owner ID: {{ user.owner_id }}</p> <!-- Assuming owner_id is available -->
+           <p class="info">Cars Listed: {{ user.userprofile.cars_listed }}</p> <!-- Assuming cars_listed is available -->
+           <div>
+             <a href="/owner-dashboard" class="btn btn-link">Dashboard</a>
+             <a href="/list-car" class="btn btn-link">List a Car</a>
+           </div>
+         </div>
+         <div class="profile-popup-footer">
+           <a href="/update-owner-profile">Update Profile</a>
+           <button class="btn-signout">Sign Out</button>
+         </div>
+       </div>
+
+       {% endif %}
+       {% endif %}
+
+       <!-- Settings Form -->
+       {% if user.is_authenticated %}
+       <form id="settingsForm" action="/update-settings/" method="POST">
+          {% csrf_token %}
+          <!-- User Profile Settings -->
+          <h2>User Profile Settings</h2>
+
+          <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="{{ user.first_name }} {{ user.last_name }}" required>
+          </div>
+
+          <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+          </div>
+
+          <!-- Change Password Section -->
+          <h2>Change Password</h2>
+
+          <div class='mb-3'>
+              <label for='current_password' class='form-label'>Current Password</label>
+              <input type='password' class='form-control' id='current_password' name='current_password' required>
+          </div>
+
+          <div class='mb-3'>
+              <label for='new_password' class='form-label'>New Password</label>
+              <input type='password' class='form-control' id='new_password' name='new_password' required>
+          </div>
+
+          <!-- Notification Preferences -->
+          <h2>Notification Preferences</h2>
+
+          <div class='mb-3 form-check'>
+              <input type='checkbox' class='form-check-input' id='emailNotifications' name='email_notifications' {% if user.profile.email_notifications %}checked{% endif %}>
+              <label class='form-check-label' for='emailNotifications'>Receive Email Notifications</label>
+          </div>
+
+          <!-- AI Preferences -->
+          <h2>AI Preferences</h2>
+
+          <div class='mb-3 form-check'>
+              <input type='checkbox' class='form-check-input' id='enableAIRecommendations' name='enable_ai' {% if user.profile.enable_ai %}checked{% endif %}>
+              <label class='form-check-label' for='enableAIRecommendations'>Enable AI Recommendations</label>
+          </div>
+
+          <!-- Save Changes Button -->
+          <button type='submit' class='btn btn-primary btn-custom'>Save Changes</button>
+       </form>
+       {% endif %}
+
+     </div>
+
+   </div>
+
+   <!-- Login Modal -->
+   <!-- Modal -->
+   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="loginModalLabel">Login to Your Account</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           <!-- Login Form -->
+           <form action="/login/" method='POST'>
+             {% csrf_token %}
+             <!-- User ID Field -->
+             <div class='mb-3'>
+               <label for='user_id' class='form-label'>User ID</label>
+               <input type='text' name='user_id' id='user_id' required placeholder='Enter your User ID...' autocomplete='off'>
+             </div>
+
+             <!-- Email Field -->
+             <div class='mb-3'>
+               <label for='login_email' class='form-label'>Email Address</label>
+               <input type='email' name='email' id='login_email' required placeholder='Enter your email address...' autocomplete='email'>
+             </div>
+
+             <!-- Password Field -->
+             <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+            <<!-- Password Field -->  
+
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+                
+               
+            
+            
+           
+
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+           
+
+
+            
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+<!-- Submit Button -->
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+
+
+
+
+
+<div style= "display:none;"class= "modal fade"id= "loginModal"
+tabindex= "-1"
+aria-labelledby= "loginModalLabel"
+aria-hidden= "true">
+
+<div style= "display:none;"class= "modal-dialog modal-dialog-centered">
+
+<div style= "display:none;"class= "modal-content">
+
+<div style= "display:none;"class= "modal-header">
+
+<h5 style= "display:none;"class= "modal-title"id= "loginModalLabel">Login to Your Account</h5>
+
+<button style= "display:none;"type= "button"class= "btn-close"
+data-bs-dismiss= "modal"
+aria-label= "Close"></button>
+
+</div>
+
+<div style= "display:none;"class= "modal-body">
+
+<form action="/login/" method= 'POST'>
+{% csrf_token %}
+<div style= "display:none;"class= 'mb-3'>
+<label style=
+
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+<!-- Submit Button -->
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+
+
+
+
+
+<div style= "display:none;"class= "modal fade"id= "loginModal"
+tabindex= "-1"
+aria-labelledby= "loginModalLabel"
+aria-hidden= "true">
+
+<div style= "display:none;"class= "modal-dialog modal-dialog-centered">
+
+<div style= "display:none;"class= "modal-content">
+
+<div style= "display:none;"class= "modal-header">
+
+<h5 style= "display:none;"class= "modal-title"id= "loginModalLabel">Login to Your Account</h5>
+
+<button style= "display:none;"type= "button"class= "btn-close"
+data-bs-dismiss= "modal"
+aria-label= "Close"></button>
+
+</div>
+
+<div style= "display:none;"class= "modal-body">
+
+<form action="/login/" method= 'POST'>
+{% csrf_token %}
+<div style= "display:none;"class= 'mb-3'>
+<label style=

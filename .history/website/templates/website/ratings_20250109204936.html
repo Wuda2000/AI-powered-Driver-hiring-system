@@ -1,0 +1,174 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratings - About Us</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpeg' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom styles for reviews */
+        .review-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .review-stars {
+            color: #f0c800;
+            margin-right: 10px;
+        }
+        .review-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .review-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .review-content {
+            margin-top: 10px;
+        }
+        .btn-link {
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .review-footer {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2>Our Reviews</h2>
+                <p>Of course we utilize our own service to constantly gather feedback from the businesses, online marketers, and agencies that use GatherUp. Read what our customers have to say about our customer feedback and online review platform. Please request a demo or sign-up for an account.</p>
+
+                <!-- Ratings Section -->
+                <div class="rating">
+                    <span class="rating-value">4.2</span>
+                    <span class="rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </span>
+                    <span class="rating-text">Out of 5 Stars</span>
+                    <span class="rating-total">Overall rating of 347 1st-party reviews</span>
+                </div>
+
+                <!-- Review Cards Section -->
+                <div class="row">
+                    <!-- Review 1 -->
+                    <div class="col-md-6">
+                        <div class="card review-card">
+                            <div class="card-body">
+                                <div class="review-header">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="review-name">Nam T.</div>
+                                    <div class="review-date">April 22, 2019</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>GatherUp has been the easiest software we have used to reach out to our customers and improve our review features.</p>
+                                </div>
+                                <div class="review-footer">
+                                    <p><strong>Response:</strong> GatherUp, April 22, 2019</p>
+                                    <p>Tam, Hearing that ease of use is at the top of your list is awesome. Thank you!</p>
+                                </div>
+                                <button class="btn btn-link">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="col-md-6">
+                        <div class="card review-card">
+                            <div class="card-body">
+                                <div class="review-header">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="review-name">Tommy Bailey</div>
+                                    <div class="review-date">April 17, 2019</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>I researched several review platforms and once I met Chris Walker at GatherUp, that pretty much sealed the deal. He answered all of my questions, gave me a ton of helpful suggestions and really just took the time to show me around the platform so that I was comfortable with it. Now that I'm a customer he continues to provide great support. I'd highly recommend anyone give Chris a call...</p>
+                                </div>
+                                <button class="btn btn-link">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="col-md-6">
+                        <div class="card review-card">
+                            <div class="card-body">
+                                <div class="review-header">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="review-name">Gary Paulson</div>
+                                    <div class="review-date">April 9, 2019</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>Love all the value that GatherUp provides even before you become a paying customer. Signed up with them when I saw that they could add...</p>
+                                </div>
+                                <button class="btn btn-link">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="col-md-6">
+                        <div class="card review-card">
+                            <div class="card-body">
+                                <div class="review-header">
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="review-name">Tim Colling</div>
+                                    <div class="review-date">April 6, 2019</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>...</p>
+                                </div>
+                                <button class="btn btn-link">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

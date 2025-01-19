@@ -1,0 +1,157 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Driver Hiring System</title>
+    
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles (optional) -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        .driver-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.3s;
+        }
+
+        .driver-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .driver-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .driver-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .driver-card p {
+            font-size: 1.1rem;
+        }
+
+        .driver-card .experience {
+            color: #007bff;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .driver-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .driver-card ul li {
+            display: inline;
+            margin-right: 5px;
+            color: #f1c40f;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .buy-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .buy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center my-5">
+        <div class="container">
+            <h1 class="display-4 text-primary">AI Driver Hiring System</h1>
+            <p class="lead">Find the best drivers with the most relevant experience for your needs</p>
+            <a href="#drivers" class="btn btn-light btn-lg">Browse Available Drivers</a>
+        </div>
+    </section>
+
+    <!-- Driver List Section -->
+    <div class="gallery" id="drivers">
+        <!-- Driver data will be populated here dynamically via JavaScript -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AI Driver Hiring System. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript to Fetch Driver Data -->
+    <script src="{% static 'script.js' %}"></script>
+    <script>
+        // Fetching driver data from the API
+        fetch('/drivers/')
+            .then(response => response.json())
+            .then(data => {
+                const driverGallery = document.getElementById('drivers');
+                driverGallery.innerHTML = ''; // Clear any pre-existing content to avoid duplicates
+
+                data.forEach(driver => {
+                    const card = document.createElement('div');
+                    card.classList.add('col-md-4');
+                    card.classList.add('driver-card');
+                    card.innerHTML = `
+                        <!-- Dynamically setting the image source -->
+                        <img src="{% static 'images/' + driver.image_url %}" alt="${driver.name} Image">
+                        <h3>${driver.name}</h3>
+                        <p>Experienced driver ready to serve</p>
+                        <div class="experience">${driver.experience} years of experience</div>
+                        <ul>
+                            <li><i class="fa fa-star checked"></i></li>
+                            <li><i class="fa fa-star checked"></i></li>
+                            <li><i class="fa fa-star checked"></i></li>
+                            <li><i class="fa fa-star checked"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <button class="buy-btn">Hire Now</button>
+                    `;
+                    driverGallery.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching drivers:', error));
+    </script>
+</body>
+</html>

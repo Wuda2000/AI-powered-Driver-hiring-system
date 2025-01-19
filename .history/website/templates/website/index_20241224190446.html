@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Driver Hiring System</title>
+    
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+
+    <style>
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center my-5">
+        <div class="container">
+            <h1 class="display-4 text-primary">AI Driver Hiring System</h1>
+            <p class="lead">Find the best drivers with the most relevant experience for your needs</p>
+            <a href="#drivers" class="btn btn-primary btn-lg shadow">Browse Available Drivers</a>
+        </div>
+    </section>
+
+    <!-- Driver List Section -->
+    <div class="gallery" id="drivers">
+        <!-- Example Driver Cards -->
+        <div class="content">
+            <img src="{% static 'images/john_doe.jpg' %}" alt="John Doe Image">
+            <h6>John Doe</h6>
+            <p>Experienced driver ready to serve</p>
+            <ul>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+            </ul>
+            <button class="buy-btn">Hire Now</button>
+        </div>
+
+        <div class="content">
+            <img src="{% static 'images/jane_smith.jpg' %}" alt="Jane Smith Image">
+            <h6>Jane Smith</h6>
+            <p>Skilled driver with years of safe driving</p>
+            <ul>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star"></i></li>
+            </ul>
+            <button class="buy-btn">Hire Now</button>
+        </div>
+
+        <div class="content">
+            <img src="{% static 'images/james_brown.jpg' %}" alt="James Brown Image">
+            <h6>James Brown</h6>
+            <p>Expert driver with a perfect record</p>
+            <ul>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+            </ul>
+            <button class="buy-btn">Hire Now</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AI Driver Hiring System. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

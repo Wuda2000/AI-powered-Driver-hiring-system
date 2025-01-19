@@ -1,0 +1,497 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients - AI Driver Hiring System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpg' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        header {
+            background-color: #17a2b8;
+            color: white;
+            padding: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            font-size: 1.1rem;
+            margin-right: 1rem;
+        }
+
+        .navbar-nav .nav-item .nav-link.active {
+            color: #17a2b8;
+        }
+
+        .container {
+            margin-top: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            font-style: italic;
+            font-size: 1.25rem;
+            border-left: 4px solid #17a2b8;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .case-study {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study h3 {
+            font-size: 1.5rem;
+            color: #17a2b8;
+        }
+
+        .case-study p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #138496;
+            border-color: #138496;
+        }
+
+        footer {
+            background-color: #17a2b8;
+            color: white;
+            padding: 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        .row img {
+            margin: 0.5rem;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .text-center h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .text-center p {
+            font-size: 1.25rem;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav .nav-item {
+                margin-bottom: 1rem;
+            }
+
+            .container {
+                margin-top: 1.5rem;
+            }
+
+            .case-study h3 {
+                font-size: 1.3rem;
+            }
+
+            .case-study p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-info text-white text-center py-4">
+        <h1>Access Our Clients</h1>
+    </header>
+
+    <main class="container my-5">
+        <div class="form-container" id="loginForm">
+            <h2>Login</h2>
+            <form id="login" onsubmit="return handleLogin(event)">
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p>Don't have an account? <a href="#" onclick="toggleForms()">Register here</a></p>
+            </form>
+        </div>
+
+        <div class="form-container hidden" id="registerForm">
+            <h2>Register</h2>
+            <form id="register" onsubmit="return handleRegister(event)">
+                <div class="mb-3">
+                    <label for="registerName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="registerName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="registerEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="registerPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <p>Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+            </form>
+        </div>
+
+        
+
+        <section id="clientsInfo" class="hidden">
+            <header class="text-center py-4"> 
+                <h1>Our Clients</h1>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">AI Driver Hiring System</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                              
+                                <li class="nav-item"><a href="{% url 'index' %}" class="btn btn-3d">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#">Clients</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+        
+            <!-- Carousel Section -->
+            <div id="clientCarousel" class="carousel slide my-4" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/ali.jpg' %}" class="d-block w-100" alt="Client 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images/prince.jpg' %}" class="d-block w-100" alt="Client 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images/fortune.jpg' %}" class="d-block w-100" alt="Client 3">
+                    </div>
+                </div>
+            </div>
+            
+                <button class="carousel-control-prev" type="button" data-bs-target="#clientCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#clientCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        
+            {% load static %}
+
+            {% load static %}
+
+            <h2>Featured Clients</h2>
+            <div class="card-group my-4">
+                <!-- Ride-Sharing Company -->
+                <div class="card">
+                    <img src="{% static 'images/ride.jpeg' %}" class="card-img-top" alt="Ride-Sharing Company">
+                    <div class="card-body">
+                        <h5 class="card-title">Ride-Sharing Company</h5>
+                        <p class="card-text">Partnering to match highly skilled drivers with ride-hailing demands.</p>
+                    </div>
+                </div>
+            
+                <!-- Logistics and Delivery Service -->
+                <div class="card">
+                    <img src="{% static 'images/logistic.jpg' %}" class="card-img-top" alt="Logistics and Delivery Service">
+                    <div class="card-body">
+                        <h5 class="card-title">Logistics & Delivery Service</h5>
+                        <p class="card-text">Ensuring safe and timely transportation of goods with top drivers.</p>
+                    </div>
+                </div>
+            
+                <!-- Corporate Fleet Management -->
+                <div class="card">
+                    <img src="{% static 'images/corporate_fleet_management.jpg' %}" class="card-img-top" alt="Corporate Fleet Management">
+                    <div class="card-body">
+                        <h5 class="card-title">Corporate Fleet Management</h5>
+                        <p class="card-text">Providing professional drivers for executive and corporate needs.</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- Table Section -->
+            <h2>Client List</h2>
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for clients..." title="Type in a name or category">
+        
+            <!-- Table with Sorting and Pagination -->
+            <table id="clientTable" class='table table-striped table-bordered'>
+                <thead>
+                    <tr>
+                        <th onclick='sortTable(0)'>Car-Owner's Name</th>
+                        <th onclick='sortTable(1)'>Driver Qualifications</th>
+                        <th onclick='sortTable(2)'>Type of vehicle owned </th>
+                        <th onclick='sortTable(3)'>Contact</th>
+                    </tr>
+                </thead>
+                <tbody id='clientBody'>
+                    <!-- Example rows -->
+                    <tr>
+                        <td>Anna Mwaura</td>
+                        <td><p> A hardworking five-star rated driver</p></td>
+                        <td>Land Cruiser</td>
+                        <td>laura34575@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Evans Ochieng</td>
+                        <td><p>Certified professional driver with over 10 years of experience</p></td>
+                        <td>Ford Mustang</td>
+                        <td>evans.ochieng@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Grace Wambui</td>
+                        <td><p>Experienced driver with excellent customer reviews</p></td>
+                        <td>Honda CR-V</td>
+                        <td>grace.wambui@outlook.com</td>
+                    </tr>
+                    <tr>
+                        <td>John Kamau</td>
+                        <td><p>Safety-conscious driver with a clean record</p></td>
+                        <td>Toyota Prius</td>
+                        <td>john.kamau@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Mary Njiru</td>
+                        <td><p>Expert in handling large vehicles and long-distance travel</p></td>
+                        <td>Mercedes-Benz G-Wagon</td>
+                        <td>mary.njiru@yahoo.com</td>
+                    </tr>
+                    <tr>
+                        <td>Peter Karanja</td>
+                        <td><p>Reliable driver with excellent customer service skills</p></td>
+                        <td>BMW X5</td>
+                        <td>peter.karanja@aol.com</td>
+                    </tr>
+                    <tr>
+                        <td>Linda Wangechi</td>
+                        <td><p>Professional driver specializing in luxury vehicles</p></td>
+                        <td>Audi Q7</td>
+                        <td>linda.wangechi@icloud.com</td>
+                    </tr>
+                    <tr>
+                        <td>James Njoroge</td>
+                        <td><p>Experienced taxi driver with local knowledge of the city</p></td>
+                        <td>Taxi (Toyota Axio)</td>
+                        <td>james.njoroge@hotmail.com</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        
+            <!-- Pagination Controls -->
+            <!-- You can implement pagination using JavaScript or a library for better management -->
+        
+        </section>
+        
+        <script>
+        // Search Functionality
+        function searchTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById("clientTable");
+            const tr = table.getElementsByTagName("tr");
+        
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName("td");
+                let found = false;
+                
+                for (let j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        if (td[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                
+                tr[i].style.display = found ? "" : "none";
+            }
+        }
+        
+        // Sorting Functionality
+        function sortTable(n) {
+            const table = document.getElementById("clientTable");
+            let switching = true;
+            let dir = "asc"; 
+            let switchcount = 0;
+        
+            while (switching) {
+                switching = false;
+                const rows = table.rows;
+        
+                for (let i = 1; i <= rows.length - 1; i++) {
+                    let shouldSwitch = false;
+                    const x = rows[i].getElementsByTagName("TD")[n];
+                    const y = rows[i + 1].getElementsByTagName("TD")[n];
+        
+                    if (dir === "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir === "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+        
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount === 0 && dir === "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+        </script>
+        
+        
+    </main>
+    
+
+    <footer class="bg-info text-white text-center py-3">
+        &copy; 2025 AI Driver Hiring System. All Rights Reserved.
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for handling login and registration -->
+    <script>
+        const users = []; // Simulating a user database
+
+        function toggleForms() {
+            document.getElementById('loginForm').classList.toggle('hidden');
+            document.getElementById('registerForm').classList.toggle('hidden');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Check if user exists
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                alert('Login successful!');
+                document.getElementById('clientsInfo').classList.remove('hidden');
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('registerForm').classList.add('hidden');
+            } else {
+                alert('Invalid credentials or you need to register first. Please try again.');
+
+                // Prompt to register if user does not exist
+                if (!users.find(u => u.email === email)) {
+                    alert('You need to register first.');
+                    toggleForms(); // Switch to registration form
+                }
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            // Check if user already exists
+            if (users.find(u => u.email === email)) {
+                alert('User already exists! Please login.');
+                return;
+            }
+
+            // Register new user
+            users.push({ name, email, password });
+            alert('Registration successful! You can now log in.');
+            toggleForms();
+        }
+    </script>
+
+</body>
+</html>

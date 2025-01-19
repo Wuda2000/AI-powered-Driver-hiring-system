@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Hiring Ratings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpeg' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .star-rating .fa {
+            color: #ffcc00;
+        }
+        .star-rating .checked {
+            color: #ff9900;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .user-info p {
+            margin: 0;
+        }
+        .user-review .star-rating {
+            margin-top: 5px;
+        }
+        .rating-breakdown ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .rating-breakdown li {
+            margin-bottom: 5px;
+        }
+        .reviews-section {
+            margin-top: 40px;
+        }
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        /* Separate styles for positive and negative reviews */
+        .positive-review {
+            background-color: #e1f7d5;
+            border-left: 5px solid #4caf50;
+        }
+        .negative-review {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+        }
+        /* Adjusted for better visibility of positive/negative feedback */
+        .reviews-section .card-body p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Driver Hiring Ratings</h1>
+
+        <!-- Average Rating Display -->
+        <div>
+            <p><strong>Average User Rating:</strong></p>
+            <p style="font-size: 24px;" id="average-rating">4.5 / 5</p>
+            <div class="star-rating" id="star-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+            </div>
+        </div>
+
+        <!-- Rating Breakdown -->
+        <div class="rating-breakdown">
+            <p><strong>Rating Breakdown:</strong></p>
+            <ul id="rating-breakdown">
+                <li>5 stars: 3</li>
+                <li>4 stars: 2</li>
+                <li>3 stars: 1</li>
+                <li>2 stars: 0</li>
+                <li>1 star: 0</li>
+            </ul>
+        </div>
+
+        <!-- User Reviews Section -->
+        <div class="reviews-section" id="user-reviews">
+            <h2>User Reviews</h2>
+
+            <!-- Reviews will be dynamically added here -->
+            <div class="row" id="reviews-grid"></div>
+
+            <!-- Show More Button -->
+            <div id="show-more-container" style="text-align: center; display: none;">
+                <button class="btn btn-primary" id="show-more-btn">Show More Reviews</button>
+            </div>
+
+            <!-- Back to Less Button -->
+            <div id="back-to-less-container" style="text-align: center; display: none;">
+                <button class="btn btn-secondary" id="back-to-less-btn">Back to Less Reviews</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const ratings = [5, 4, 5, 5, 4, 5];
+
+        const reviewData = [
+            { name: "Ali Muhammed", date: "January 29, 2023", rating: 4, review: "This was a nice experience in hiring a driver!" },
+            { name: "Jane Doe", date: "February 1, 2023", rating: 5, review: "The driver was very professional and prompt." },
+            { name: "John Smith", date: "March 10, 2023", rating: 3, review: "Good service, but the driver was a bit late." },
+            { name: "Mary Ann", date: "April 5, 2023", rating: 5, review: "Perfect experience! Highly recommend this service." },
+            { name: "Carlos Gutierrez", date: "May 15, 2023", rating: 4, review: "Driver was great, but the car could have been cleaner." },
+            { name: "Lilly Thomas", date: "June 20, 2023", rating: 4, review: "Nice driver, the ride was smooth, but slightly expensive." },
+            { name: "Michael Lee", date: "July 30, 2023", rating: 5, review: "Excellent service, on time and very courteous." },
+            { name: "Evelyn Davis", date: "August 25, 2023", rating: 3, review: "The ride was decent, but there was no air conditioning." },
+            { name: "George Brown", date: "September 10, 2023", rating: 5, review: "Great experience, the driver was friendly and professional." },
+            { name: "Sarah Wilson", date: "October 17, 2023", rating: 4, review: "The ride was comfortable, but the GPS could be updated." }
+        ];
+
+        function generateCode(ratings) {
+            const avgRating = (ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length).toFixed(1);
+            const ratingCounts = ratings.reduce((counts, rating) => {
+                counts[rating] = (counts[rating] || 0) + 1;
+                return counts;
+            }, {});
+
+            // Update Average Rating
+            document.getElementById('average-rating').innerText = `${avgRating} / 5`;
+
+            // Update Star Rating Display
+            const stars = [...Array(5)].map((_, i) => {
+                return i < avgRating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+            }).join('');
+            document.getElementById('star-rating').innerHTML = stars;
+
+            // Update Rating Breakdown
+            const breakdown = [5, 4, 3, 2, 1].map(star => {
+                return ratingCounts[star] ? `<li>${star} stars: ${ratingCounts[star]}</li>` : '';
+            }).join('');
+            document.getElementById('rating-breakdown').innerHTML = breakdown;
+
+            // Display reviews with positive and negative feedback
+            const reviewsHTML = reviewData.map(review => {
+                const reviewStars = [...Array(5)].map((_, i) => {
+                    return i < review.rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+                }).join('');
+
+                const reviewClass = review.rating >= 4 ? "positive-review" : "negative-review";
+
+                return `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card ${reviewClass}">
+                            <div class="card-body">
+                                <div class="user-info">
+                                    <img src="{% static 'images/elephant.png' %}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;">
+                                    <div>
+                                        <p><strong>${review.name}</strong></p>
+                                        <p>${review.date}</p>
+                                    </div>
+                                </div>
+                                <div class="star-rating">${reviewStars}</div>
+                                <p>${review.review}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('reviews-grid').innerHTML = reviewsHTML;
+
+            // Show "Show More Reviews" button if there are more than 3 reviews
+            if (reviewData.length > 3) {
+                document.getElementById('show-more-container').style.display = 'block';
+                document.getElementById('show-more-btn').onclick = function() {
+                    showAllReviews();
+                };
+            }
+        }
+
+        function showAllReviews() {
+            const reviewsHTML = reviewData.map(review => {
+                const reviewStars = [...Array(5)].map((_, i) => {
+                    return i < review.rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+                }).join('');
+
+                const reviewClass = review.rating >= 4 ? "positive-review" : "negative-review";
+
+                return `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card ${reviewClass}">
+                            <div class="card-body">
+                                <div class="user-info">
+                                    <img src="{% static 'images/elephant.png' %}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;">
+                                    <div>
+                                        <p><strong>${review.name}</strong></p>
+                                        <p>${review.date}</p>
+                                    </div>
+                                </div>
+                                <div class="star-rating">${reviewStars}</div>
+                                <p>${review.review}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('reviews-grid').innerHTML = reviewsHTML;
+            document.getElementById('show-more-container').style.display = 'none'; // Hide the "Show More" button after loading all reviews
+            document.getElementById('back-to-less-container').style.display = 'block'; // Show the "Back to Less" button
+            document.getElementById('back-to-less-btn').onclick = function() {
+                backToLessReviews();
+            };
+        }
+
+        function backToLessReviews() {
+            const initialReviews = reviewData.slice(0, 3);
+            const reviewsHTML = initialReviews.map(review => {
+                const reviewStars = [...Array(5)].map((_, i) => {
+                    return i < review.rating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+                }).join('');
+
+                const reviewClass = review.rating >= 4 ? "positive-review" : "negative-review";
+
+                return `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card ${reviewClass}">
+                            <div class="card-body">
+                                <div class="user-info">
+                                    <img src="{% static 'images/elephant.png' %}" alt="User Image" class="rounded-circle" style="width: 50px; height: 50px;">
+                                    <div>
+                                        <p><strong>${review.name}</strong></p>
+                                        <p>${review.date}</p>
+                                    </div>
+                                </div>
+                                <div class="star-rating">${reviewStars}</div>
+                                <p>${review.review}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('reviews-grid').innerHTML = reviewsHTML;
+            document.getElementById('back-to-less-container').style.display = 'none'; // Hide the "Back to Less" button after reverting to limited reviews
+            document.getElementById('show-more-container').style.display = 'block'; // Show the "Show More" button again
+        }
+
+        generateCode(ratings); // Initial page load
+    </script>
+</body>
+</html>

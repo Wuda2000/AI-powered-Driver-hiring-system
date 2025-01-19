@@ -1,0 +1,144 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - AI Driver Hiring System</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'settings.css' %}">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .sidebar {
+      background: linear-gradient(145deg, #ffffff, #e0e0e0);
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.7);
+      height: 100vh;
+      padding-top: 20px;
+    }
+    .sidebar img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .sidebar .nav-link {
+      font-size: 16px;
+      padding: 10px 16px;
+      color: #666;
+      transition: all 0.3s ease;
+    }
+    .sidebar .nav-link:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .profile-section img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e9ecef;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 col-lg-2 sidebar">
+      <div class="text-center p-3">
+        <img src="{{ user.userprofile.profile_picture.url }}" alt="Logo" class="mb-3">
+        <h6>{{ user.username }}</h6>
+      </div>
+      <ul class="nav flex-column px-2">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fas fa-user"></i> Profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/driver-settings" class="nav-link">
+            <i class="fas fa-car"></i> Driver Settings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/car-owner-settings" class="nav-link">
+            <i class="fas fa-car-side"></i> Car Owner Settings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/bookings" class="nav-link">
+            <i class="fas fa-calendar-check"></i> Manage Bookings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/reports" class="nav-link">
+            <i class="fas fa-chart-line"></i> Reports
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/settings" class="nav-link">
+            <i class="fas fa-cogs"></i> Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9 col-lg-10 p-4">
+      <div class="profile-section text-center">
+        <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+        <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+        <p><strong>Role:</strong> {{ user.userprofile.role }}</p>
+        <a href="/logout" class="btn btn-outline-primary">Logout</a>
+      </div>
+
+      <div class="mt-4">
+        <h5>Account Settings</h5>
+        <ul class="list-unstyled">
+          <li class="mb-3">
+            <a href="/notifications">Manage Notifications</a>
+          </li>
+          <li class="mb-3">
+            <a href="/payment-methods">Payment Methods</a>
+          </li>
+          <li class="mb-3">
+            <a href="/preferences">Preferences</a>
+          </li>
+          <li class="mb-3">
+            <a href="/ai-recommendations">AI Recommendations</a>
+          </li>
+          <li class="mb-3">
+            <a href="/history">Booking History</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 AI Driver Hiring System</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

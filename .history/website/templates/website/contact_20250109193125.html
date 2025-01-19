@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* Section Styling */
+        .contact-section {
+            text-align: center;
+            color: white;
+            background: radial-gradient(circle, rgba(17,24,39,1) 0%, rgba(56,78,119,1) 100%);
+            padding: 60px 20px;
+        }
+
+        .contact-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #4a90e2;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ABD;
+        }
+
+        /* Map Styling */
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <section class="contact-section">
+        <h1>We'd love to hear from you</h1>
+        <p>Whether you're curious about features, a demo, or even press — we're ready to answer any and all questions.</p>
+        <button class="btn btn-primary mb-4">Request A Demo</button>
+        <div class="row justify-content-center">
+            <!-- Card 1: Sales -->
+            <div class="col-md-4 mb-3">
+                <div class="contact-card text-center">
+                    <div class="contact-icon">💬</div>
+                    <h5>Sales</h5>
+                    <p>Wondering if our tool is right for your team? Chat with our team to see if there's a fit.</p>
+                    <button class="btn btn-primary">Let's Chat</button>
+                </div>
+            </div>
+            <!-- Card 2: Support -->
+            <div class="col-md-4 mb-3">
+                <div class="contact-card text-center">
+                    <div class="contact-icon">🎧</div>
+                    <h5>Support</h5>
+                    <p>Need a hand using our tool or managing your account? Let's get you connected with support.</p>
+                    <button class="btn btn-primary">Get Support</button>
+                </div>
+            </div>
+            <!-- Card 3: Partnerships -->
+            <div class="col-md-4 mb-3">
+                <div class="contact-card text-center">
+                    <div class="contact-icon">🤝</div>
+                    <h5>Partnerships</h5>
+                    <p>We're into co-marketing with awesome brands. Drop us a note and our team will circle back.</p>
+                    <button class="btn btn-primary">Get In Touch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Check if geolocation is enabled
+        function showMap(latitude, longitude) {
+            var map = L.map('map').setView([latitude, longitude], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('Your Location')
+                .openPopup();
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    showMap(latitude, longitude);
+                }, function() {
+                    alert("Location access denied. Please enable location services.");
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Ask for location on page load
+        window.onload = function() {
+            getLocation();
+        }
+    </script>
+</body>
+</html>

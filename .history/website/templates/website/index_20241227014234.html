@@ -1,0 +1,326 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Driver Hiring System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles (optional) -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+.menu-bar {
+    background-color: #04094d; /* Dark background */
+    padding: 10px 0;
+    
+}
+
+.menu-bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center the menu items */
+}
+
+.menu-bar li {
+    position: relative; /* For positioning sub-menus */
+    margin: 0 15px; /* Space between menu items */
+}
+
+.menu-bar a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Padding around links */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.menu-bar a:hover {
+    background-color: #0b69c1; /* Darker background on hover */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.menu-bar .active a {
+    background-color: #007bff; /* Active link color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.sub-menu-1, .sub-menu-2 {
+    display: none; /* Hide sub-menus by default */
+    position: absolute; /* Position relative to parent */
+    background-color: #343a40; /* Same background as menu */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.menu-bar li:hover .sub-menu-1,
+.hover-me:hover .sub-menu-2 {
+    display: block; /* Show sub-menu on hover */
+}
+
+.sub-menu-1 ul, .sub-menu-2 ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.sub-menu-1 li, .sub-menu-2 li {
+    margin: 5px 0; /* Space between sub-menu items */
+}
+
+.sub-menu-1 a, .sub-menu-2 a {
+    color: #f8f9fa; /* Sub-menu text color */
+    padding: 5px 10px; /* Padding for sub-menu links */
+    display: block; /* Make the entire area clickable */
+}
+
+.sub-menu-1 a:hover, .sub-menu-2 a:hover {
+    background-color: #495057; /* Darker background on hover */
+}
+
+       .driver-card {
+            background-color: rgba(200, 200, 208, 0.612);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(112, 102, 186, 0.1);
+            padding: 20px;
+            margin: 10px; /* Add space around each card */
+            transition: transform 0.3s;
+            width: 300px; /* Adjust the width as needed */
+            height: 500px; /* Adjust the height as needed */
+        }
+
+        .content-container {
+            min-height: 100vh; /* Ensure the content fills the viewport */
+            overflow: auto; /* Allow scrolling if content overflows */
+        }
+
+        .driver-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(74, 1, 1, 0.15);
+        }
+
+        .driver-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .midnight-blue-bg {
+            background-color: #191970 !important; /* Midnight Blue */
+        }
+
+        .driver-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .driver-card p {
+            font-size: 1.1rem;
+        }
+
+        .driver-card .experience {
+            color: #007bff;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .driver-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .driver-card ul li {
+            display: inline;
+            margin-right: 5px;
+            color: #f1c40f;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .buy-btn {
+            background-color: #043870;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .buy-btn:hover {
+            background-color: #12b300;
+        }
+
+        footer {
+            background-color: #529ae7;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .custom-btn {
+            background-color: #FFA500; /* Soft Orange/Gold color */
+            color: white;
+            border: 2px solid #FF8C00; /* Darker border for the 3D effect */
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .custom-btn:hover {
+            background-color: #FF8C00; /* Darker shade when hovered */
+            border: 2px solid #FFA500;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 3D hover effect */
+            transform: translateY(-2px); /* Lift the button on hover */
+        }
+
+        .custom-btn:active {
+            background-color: #FF7F00; /* Slightly darker when clicked */
+            transform: translateY(1px); /* Button presses down */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-bar">
+        <ul>
+            <li class="active"><a href="index.html">HOME</a>
+                <i class="fa fa-home" aria-hidden="true"></i></li>
+            <li><a href="Aboutus.html">ABOUT US</a>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="#">Objective</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Ratings</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href=" Services.html">SERVICES</a><i class="fa fa-clone" aria-hidden="true"></i></li>
+            <li><a href="Pricing.html">PRICING</a>
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li class="hover-me"><a href="#">Payment Method</a>
+                            <div class="sub-menu-2">
+                                <ul>
+                                    <li><a href="#">Mpesa App</a></li>
+                                    <li><a href="#">Paypal App</a></li>
+                                    <li><a href="#">Western Union App</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="clients.html">CLIENTS</a><i class="fa fa-users" aria-hidden="true"></i></li>
+            <li><a href="contact.html">CONTACT</a><i class="fa fa-phone" aria-hidden="true"></i></li>
+        </ul>
+
+    </div>
+  
+        <!-- Hero Section -->
+        <section class="hero-section text-center my-5 p-5 text-white text-center">
+            <div class="container">
+                <h1 class="display-4">AI-POWERED DRIVER HIRING SYSTEM</h1>
+                <p class="lead">Find the best drivers with the most relevant experience for your needs</p>
+                <a href="#drivers" class="btn btn-lg custom-btn">Browse Available Drivers</a>
+            </div>
+        </section>
+    
+
+    <div class="content-container">
+        <!-- Driver List Section -->
+        <div class="gallery" id="driver-list">
+            <!-- Driver data cards for John Doe, Jane Smith, and James Brown -->
+
+            <div class="col-md-4 driver-card">
+                <img src="{% static 'images/erik-lucatero-d2MSDujJl2g-unsplash.jpg' %}" class="rounded-circle" alt="Cinque Terre" width="80" height="100"> 
+                <h3>Eugene Mageto</h3>
+                <p>Experienced driver ready to serve</p>
+                <div class="experience">5 years of experience</div>
+                <ul>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                </ul>
+                <button class="buy-btn">Hire Now</button>
+            </div>
+
+            <div class="col-md-4 driver-card">   
+                <img src="{% static 'images/gabriel-silverio-u3WmDyKGsrY-unsplash.jpg' %}" class="rounded-circle" alt="Cinque Terre" width="80" height="40"> 
+                <h3>Sarah Mbuvi</h3>
+                <p>Skilled driver with years of safe driving</p>
+                <div class="experience">3 years of experience</div>
+                <ul>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                </ul>
+                <button class="buy-btn">Hire Now</button>
+            </div>
+
+            <div class="col-md-4 driver-card">   
+                <img src="{% static 'images/jimmy-fermin-bqe0J0b26RQ-unsplash.jpg' %}" class="rounded-circle" alt="Cinque Terre" width="80" height="40"> 
+                <h3>Jenevive Saru</h3>
+                <p>Skilled driver with years of safe driving</p>
+                <div class="experience">9 years of experience</div>
+                <ul>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                </ul>
+                <button class="buy-btn">Hire Now</button>
+            </div>
+
+            <div class="col-md-4 driver-card">
+                <img src="{% static 'images/ludvig-wiese-d-MfHM-jHwc-unsplash.jpg' %}" class="rounded-circle" alt="Cinque Terre" width="80" height="40"> 
+                <h3>Collins Odhiambo</h3>
+                <p>Expert driver with a perfect record</p>
+                <div class="experience">8 years of experience</div>
+                <ul>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                    <li><i class="fa fa-star checked"></i></li>
+                </ul>
+                <button class="buy-btn">Hire Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AI-Powered Driver Hiring System. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

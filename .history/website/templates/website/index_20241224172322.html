@@ -1,0 +1,19 @@
+Ensure Static Files Configuration in settings.py
+In your settings.py, ensure the following settings are correctly configured:
+
+python
+Copy code
+# settings.py
+
+STATIC_URL = '/static/'
+
+# Add the path to your static files folder (assuming 'static' is at the project root)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # This ensures that Django can find your 'static' directory
+]
+
+# Ensure you're running Django in development mode so static files are served automatically
+if DEBUG:
+    STATICFILES_DIRS += [
+        os.path.join(BASE_DIR, 'static'),  # Adjust the path if needed
+    ]

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Hiring Feedback</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: auto; padding: 20px; }
+        textarea { width: 100%; height: 100px; }
+        input[type="text"], input[type="email"] { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 15px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+            <label for="userName">Your Name (optional):</label>
+            <input type="text" id="userName" name="userName">
+
+            <label for="userEmail">Your Email (optional):</label>
+            <input type="email" id="userEmail" name="userEmail">
+
+            <label for="feedbackCategory">Feedback Category:</label>
+            <select id="feedbackCategory" name="feedbackCategory">
+                <option value="Application Process">Application Process</option>
+                <option value="Interview Experience">Interview Experience</option>
+                <option value="Communication">Communication</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="feedbackComments">Your Feedback:</label>
+            <textarea id="feedbackComments" name="feedbackComments" required></textarea>
+
+            <label for="suggestions">Suggestions for Improvement:</label>
+            <textarea id="suggestions" name="suggestions"></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+        <div id="thankYouMessage" style="display:none;">
+            <p>Thank you for your feedback!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').onsubmit = function(event) {
+            event.preventDefault();
+            // Here you would typically send the data to your server
+            console.log({
+                userName: document.getElementById('userName').value,
+                userEmail: document.getElementById('userEmail').value,
+                feedbackCategory: document.getElementById('feedbackCategory').value,
+                feedbackComments: document.getElementById('feedbackComments').value,
+                suggestions: document.getElementById('suggestions').value
+            });
+            document.getElementById('thankYouMessage').style.display = 'block';
+        };
+    </script>
+</body>
+</html>

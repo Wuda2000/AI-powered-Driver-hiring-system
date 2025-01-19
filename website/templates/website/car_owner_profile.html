@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Owner Profile</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .profile-popup {
+      max-width: 400px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .profile-popup-header {
+      background: linear-gradient(to right, #17a2b8, #138496);
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .profile-popup-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-top: -40px;
+      border: 3px solid white;
+    }
+
+    .profile-popup-body {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .profile-popup-body h5 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .profile-popup-body p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .profile-popup-body .info {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 5px;
+    }
+
+    .profile-popup-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #ddd;
+    }
+
+    .profile-popup-footer a {
+      font-size: 14px;
+      color: #17a2b8;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .profile-popup-footer a:hover {
+      color: #138496;
+    }
+
+    .btn-signout {
+      padding: 10px 20px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .btn-signout:hover {
+      background: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-popup">
+  <div class="profile-popup-header">
+    <!-- Display profile picture (replace with actual picture URL if available) -->
+    <img src="https://via.placeholder.com/80" alt="Car Owner Picture">
+    <!-- Display car owner's name -->
+    <h4>{{ profile.user.first_name }} {{ profile.user.last_name }}</h4>
+    <!-- Display car owner's email -->
+    <p>{{ profile.user.email }}</p>
+  </div>
+  <div class="profile-popup-body">
+    <!-- Display car owner-specific information -->
+    <p class="info">Owner ID: OWN-{{ profile.id }}</p>
+    <p class="info">Cars Listed: {{ profile.cars_listed }}</p>
+    <p class="info">Active Listings: {{ profile.active_listings }}</p>
+    <div>
+      <!-- Links to other car owner-related pages (e.g., car listing, active listings) -->
+      <a href="/car-listing" class="btn btn-link">Car Listings</a>
+      <a href="/active-listings" class="btn btn-link">Active Listings</a>
+    </div>
+  </div>
+  <div class="profile-popup-footer">
+    <!-- Link to update profile -->
+    <a href="/update-profile">Update Profile</a>
+    <!-- Sign out button -->
+    <button class="btn-signout">Sign Out</button>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

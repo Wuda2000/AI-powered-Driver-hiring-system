@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="s.css">
+</head>
+<body>
+    <header>
+        <nav class="menubar">
+            <div class="language-selection">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+            <div class="account-icon">
+                <i class="fas fa-user-circle"></i>
+                <img id="profile-pic" class="profile-pic" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+                <div class="account-dropdown">
+                    <a href="/edit-profile">Edit Profile</a>
+                    <a href="/logout">Log Out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Account Settings</h1>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <h2>Profile Picture</h2>
+            <img id="profile-picture" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="profile_picture">Change Profile Picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture">
+                    {{ profile_form.profile_picture.errors }}
+                </div>
+                <button type="submit">Update Picture</button>
+            </form>
+        </section>
+
+        <!-- Email Section -->
+        <section class="email-section">
+            <h2>Change Email Address</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="email">New Email</label>
+                    <input type="email" name="email" id="email" value="{{ user.email }}">
+                    {{ email_form.email.errors }}
+                </div>
+                <button type="submit">Update Email</button>
+            </form>
+        </section>
+
+        <!-- Password Section -->
+        <section class="password-section">
+            <h2>Change Password</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="old_password">Old Password</label>
+                    <input type="password" name="old_password" id="old_password" required>
+                    {{ password_form.old_password.errors }}
+                </div>
+                <div>
+                    <label for="new_password">New Password</label>
+                    <input type="password" name="new_password" id="new_password" required>
+                    {{ password_form.new_password.errors }}
+                </div>
+                <div>
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" name="confirm_password" id="confirm_password" required>
+                    {{ password_form.confirm_password.errors }}
+                </div>
+                <button type="submit">Update Password</button>
+            </form>
+        </section>
+
+        <p><a href="/account">Back to Account</a></p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AI Driver Hiring System</p>
+    </footer>
+</body>
+</html>

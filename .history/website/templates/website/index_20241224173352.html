@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Hiring System</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Driver Hiring System</h1>
+    <p>Use the API to fetch available drivers.</p>
+    <ul id="driver-list">
+        <!-- Driver data will be populated here -->
+    </ul>
+
+    <script src="{% static 'script.js' %}"></script>
+    <script>
+        // Fetching driver data from the API
+        fetch('/drivers/')  <!-- Corrected to match your current API endpoint -->
+            .then(response => response.json())
+            .then(data => {
+                const driverList = document.getElementById('driver-list');
+                data.forEach(driver => {
+                    const li = document.createElement('li');
+                    li.textContent = `${driver.name} - ${driver.experience} years of experience`;
+                    driverList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error fetching drivers:', error));
+    </script>
+</body>
+</html>

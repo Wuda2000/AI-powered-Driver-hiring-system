@@ -1,0 +1,202 @@
+html, body {
+    height: 100%; /* Make sure body takes the full viewport height */
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    overflow: auto; /* Allow scrolling */
+}
+.menu-bar {
+    background-color: #343a40; /* Dark background */
+    padding: 10px 0;
+}
+
+.menu-bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center the menu items */
+}
+
+.menu-bar li {
+    position: relative; /* For positioning sub-menus */
+    margin: 0 15px; /* Space between menu items */
+}
+
+.menu-bar a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Padding around links */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.menu-bar a:hover {
+    background-color: #495057; /* Darker background on hover */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.menu-bar .active a {
+    background-color: #007bff; /* Active link color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.sub-menu-1, .sub-menu-2 {
+    display: none; /* Hide sub-menus by default */
+    position: absolute; /* Position relative to parent */
+    background-color: #343a40; /* Same background as menu */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.menu-bar li:hover .sub-menu-1,
+.hover-me:hover .sub-menu-2 {
+    display: block; /* Show sub-menu on hover */
+}
+
+.sub-menu-1 ul, .sub-menu-2 ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.sub-menu-1 li, .sub-menu-2 li {
+    margin: 5px 0; /* Space between sub-menu items */
+}
+
+.sub-menu-1 a, .sub-menu-2 a {
+    color: #f8f9fa; /* Sub-menu text color */
+    padding: 5px 10px; /* Padding for sub-menu links */
+    display: block; /* Make the entire area clickable */
+}
+
+.sub-menu-1 a:hover, .sub-menu-2 a:hover {
+    background-color: #495057; /* Darker background on hover */
+}
+
+.hero-section {
+    position: relative;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.hero-section .lead {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.card-text {
+    font-size: 1.1rem;
+}
+
+.rating .fa {
+    color: #ff9f43;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D Hover Effect for Cards */
+.driver-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform-style: preserve-3d;
+}
+
+.driver-card:hover {
+    transform: translateY(-15px) rotateY(10deg) rotateX(5deg);
+    box-shadow: 0 15px 25px rgba(65, 2, 2, 0.2);
+}
+
+.driver-card img {
+    transition: transform 0.3s ease;
+}
+
+.driver-card:hover img {
+    transform: scale(1.05);
+}
+
+.buy-btn {
+    background-color: #0c498a;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.buy-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+@media (max-width: 1000px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 750px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+}

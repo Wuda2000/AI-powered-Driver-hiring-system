@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Owners Offers - AI Driver Hiring System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero {
+            background-image: url('https://via.placeholder.com/1600x400?text=Find+Your+Perfect+Ride');
+            background-size: cover;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .card {
+            margin-bottom: 20px;
+            transition: transform 0.2s; /* Animation on hover */
+        }
+        .card:hover {
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+        }
+        .testimonial {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .faq {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="bg-info text-white text-center py-4">
+    <h1>Available Car Owners and Their Offers</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">AI Driver Hiring System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Car Owners Offers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="hero">
+    <h2>Find Your Perfect Ride Today!</h2>
+    <p>Browse through our extensive list of car owners and their offers.</p>
+    <button class="btn btn-primary btn-lg">Browse Offers</button>
+</div>
+
+<main class="container my-5">
+    <!-- Search and Filter Section -->
+    <div class="mb-4">
+        <input type="text" class="form-control" placeholder="Search for car owners..." id="searchInput">
+    </div>
+
+    <!-- Car Owner Listings -->
+    <h2>Available Cars</h2>
+    <div class="row">
+        <!-- Card for each car owner -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200?text=Car+Owner+1" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Car Owner Name</h5>
+                    <p class="card-text">Make: Toyota | Model: Camry | Year: 2020 | Mileage: 15,000 miles</p>
+                    <p><strong>Price:</strong> $50/day</p>
+                    <button class="btn btn-primary">View Details</button>
+                    <button class="btn btn-secondary">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repeat the card for more car owners -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200?text=Car+Owner+2" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Car Owner Name</h5>
+                    <p class="card-text">Make: Honda | Model: Accord | Year: 2019 | Mileage: 10,000 miles</p>
+                    <p><strong>Price:</strong> $55/day</p>
+                    <button class="btn btn-primary">View Details</button>
+                    <button class="btn btn-secondary">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more cards as needed -->
+    </div>
+
+    <!-- Customer Testimonials Section -->
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial">
+        <p>"I had a fantastic experience renting a car! The process was smooth and the service was excellent!" - John Doe</p>
+    </div>
+
+    <!-- FAQs Section -->
+    <h2>Frequently Asked Questions</h2>
+    <div class='faq'>
+        <strong>Q1:</strong> What is included in the rental price?<br />
+        A1: The rental price includes insurance, maintenance, and roadside assistance.<br /><br />
+        
+        <strong>Q2:</strong> Are there any additional fees?<br />
+        A2: Additional fees may apply for late returns or extra mileage.<br /><br />
+        
+        <!-- Add more FAQs as needed -->
+    </div>
+
+</main>
+
+<footer class='footer text-center py-3'>
+    &copy; 2025 AI Driver Hiring System. All Rights Reserved.
+</footer>
+
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+
+<script>
+// Search Functionality
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    const filter = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        
+        if (title.includes(filter)) {
+            card.parentElement.style.display = ''; // Show card
+        } else {
+            card.parentElement.style.display = 'none'; // Hide card
+        }
+    });
+});
+</script>
+
+
+
+</body>
+</html>

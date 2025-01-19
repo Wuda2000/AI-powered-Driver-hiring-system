@@ -1,0 +1,6 @@
+﻿price_per_day,rating,car_make,car_model,car_year,mileage,location,high_paying (target)
+50,4.5,Toyota,Camry,2020,15000,Kisumu,1
+60,4.7,Honda,Accord,2019,10000,Murang'a,1
+40,4.2,Ford,Focus,2010,20000,Nakuru,0
+45,4.4,Nissan,Altima,2021,12000,Eldoret,0
+70,4.9,BMW,3 Series,2022,5000,Voi,1

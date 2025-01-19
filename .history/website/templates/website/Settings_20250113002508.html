@@ -1,0 +1,646 @@
+<!-- Login Form -->
+<form action="/login/" method="POST">
+  {% csrf_token %}
+  <!-- Email Field -->
+  <div class="mb-3">
+    <label for="login_email" class="form-label">Email Address</label>
+    <input 
+      type="email" 
+      name="email" 
+      id="login_email" 
+      required 
+      placeholder="Enter your email address..." 
+      autocomplete="email" 
+      autofocus 
+      value="{{ request.POST.email|default:'' }}">
+  </div>
+
+  <!-- ID Field -->
+  <div class="mb-3">
+    <label for="user_id" class="form-label">User ID</label>
+    <input 
+      type="text" 
+      name="user_id" 
+      id="user_id" 
+      readonly 
+      value="{{ user_id }}" 
+      class="form-control" 
+      placeholder="User ID">
+  </div>
+
+  <!-- Password Field -->
+  <div class="mb-3">
+    <label for="login_password" class="form-label">Password</label>
+    <input 
+      type="password" 
+      name="password" 
+      id="login_password" 
+      required 
+      placeholder="Enter your password..." 
+      autocomplete="current-password" 
+      class="form-control">
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+       
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+<!-- Submit Button -->
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+<!-- Submit Button -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+<!-- Example of a "Forgot Password?" link can be added here -->
+
+
+<button type = 'submit'class = 'btn btn-primary'>Login</button>
+
+
+<!-- Add any additional links or buttons here if needed -->
+
+
+
+
+
+
+<div style= "display:none;"class= "modal fade"id= "loginModal"
+tabindex= "-1"
+aria-labelledby= "loginModalLabel"
+aria-hidden= "true">
+
+<div style= "display:none;"class= "modal-dialog modal-dialog-centered">
+
+<div style= "display:none;"class= "modal-content">
+
+<div style= "display:none;"class= "modal-header">
+
+<h5 style= "display:none;"class= "modal-title"id= "loginModalLabel">Login to Your Account</h5>
+
+<button style= "display:none;"type= "button"class= "btn-close"
+data-bs-dismiss= "modal"
+aria-label= "Close"></button>
+
+</div>
+
+<div style= "display:none;"class= "modal-body">
+
+<form action="/login/" method= 'POST'>
+{% csrf_token %}
+<div style= "display:none;"class= 'mb-3'>
+<label style=

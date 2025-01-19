@@ -1,0 +1,21 @@
+<div class="profile-popup">
+    <div class="profile-popup-header">
+      <img src="https://via.placeholder.com/80" alt="Driver Picture">
+      <h4>{{ name }}</h4>
+      <p>{{ email }}</p>
+    </div>
+    <div class="profile-popup-body">
+      <p class="info">Driver ID: {{ role_id }}</p>
+      <p class="info">Experience: {{ experience }}</p>
+      <p class="info">Rating: {{ rating }}/5</p>
+      <div>
+        <a href="/driver-dashboard" class="btn btn-link">Dashboard</a>
+        <a href="/completed-rides" class="btn btn-link">Completed Rides</a>
+      </div>
+    </div>
+    <div class="profile-popup-footer">
+      <a href="/update-driver-profile">Update Profile</a>
+      <button class="btn-signout">Sign Out</button>
+    </div>
+  </div>
+  

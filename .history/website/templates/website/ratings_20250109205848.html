@@ -1,0 +1,141 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .star-rating .fa {
+            color: #ffcc00;
+        }
+        .star-rating .checked {
+            color: #ff9900;
+        }
+        .user-review {
+            margin-top: 20px;
+        }
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .user-info p {
+            margin: 0;
+        }
+        .user-review .star-rating {
+            margin-top: 5px;
+        }
+        .rating-breakdown ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .rating-breakdown li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Average Rating Display -->
+    <div>
+        <p>Average user rating</p>
+        <p>4.5 / 5</p>
+        <div class="star-rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        </div>
+    </div>
+
+    <!-- Rating Breakdown -->
+    <div class="rating-breakdown">
+        <p>Rating breakdown</p>
+        <ul>
+            <li>5 stars: 3</li>
+            <li>4 stars: 2</li>
+        </ul>
+    </div>
+
+    <!-- User Review -->
+    <div class="user-review">
+        <div class="user-info">
+            <img src="no_image.png" alt="User Image">
+            <p>User</p>
+            <p>January 29, 2023</p>
+        </div>
+        <div class="star-rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <p>this was nice in buy</p>
+    </div>
+
+    <script>
+        // Example ratings data
+        const ratings = [5, 4, 5, 5, 4, 5];
+
+        function generateCode(ratings) {
+            const avgRating = (ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length).toFixed(1);
+            const ratingCounts = ratings.reduce((counts, rating) => {
+                counts[rating] = (counts[rating] || 0) + 1;
+                return counts;
+            }, {});
+
+            // Average Rating Section
+            let avgRatingCode = `
+                <div>
+                    <p>Average user rating</p>
+                    <p>${avgRating} / 5</p>
+                    <div class="star-rating">
+                        ${[...Array(5)].map((_, i) => {
+                            return i < avgRating ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Rating Breakdown Section
+            let breakdownCode = `
+                <div>
+                    <p>Rating breakdown</p>
+                    <ul>
+                        ${[5, 4, 3, 2, 1].map(star => {
+                            return ratingCounts[star] ? `<li>${star} stars: ${ratingCounts[star]}</li>` : '';
+                        }).join('')}
+                    </ul>
+                </div>
+            `;
+
+            // User Review Section
+            let reviewCode = `
+                <div class="user-review">
+                    <div class="user-info">
+                        <img src="no_image.png" alt="User Image">
+                        <p>User</p>
+                        <p>January 29, 2023</p>
+                    </div>
+                    <div class="star-rating">
+                        ${[...Array(5)].map((_, i) => {
+                            return i < 4 ? '<span class="fa fa-star checked"></span>' : '<span class="fa fa-star"></span>';
+                        }).join('')}
+                    </div>
+                    <p>this was nice in buy</p>
+                </div>
+            `;
+
+            return avgRatingCode + breakdownCode + reviewCode;
+        }
+
+        // Populate the ratings section
+        document.body.innerHTML = generateCode(ratings);
+    </script>
+
+</body>
+</html>

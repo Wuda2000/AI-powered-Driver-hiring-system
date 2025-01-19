@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients - AI Driver Hiring System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.jpeg' %}">
+    <style>
+        /* Add styles here */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-info text-white text-center py-4">
+        <h1>Access Our Clients</h1>
+    </header>
+
+    <main class="container my-5">
+        <!-- Login Form -->
+        <div class="form-container" id="loginForm">
+            <h2>Login</h2>
+            <form id="login" onsubmit="return handleLogin(event)">
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginRole" class="form-label">Sign in as</label>
+                    <select class="form-select" id="loginRole" required>
+                        <option value="temporary_driver">Temporary Driver</option>
+                        <option value="car_owner">Car Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p>Don't have an account? <a href="#" onclick="toggleForms()">Register here</a></p>
+            </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="form-container hidden" id="registerForm">
+            <h2>Register</h2>
+            <form id="register" onsubmit="return handleRegister(event)">
+                <div class="mb-3">
+                    <label for="registerName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="registerName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="registerEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="registerPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="registerRole" class="form-label">Sign up as</label>
+                    <select class="form-select" id="registerRole" required>
+                        <option value="temporary_driver">Temporary Driver</option>
+                        <option value="car_owner">Car Owner</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <p>Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Function to toggle between forms
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            loginForm.classList.toggle('hidden');
+            registerForm.classList.toggle('hidden');
+        }
+
+        // Handle Register
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const role = document.getElementById('registerRole').value;
+            
+            console.log('Registered with:', name, email, password, role);
+            // You can send this data to your backend using AJAX or other methods
+            // After successful registration, show login form
+            toggleForms();
+        }
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const role = document.getElementById('loginRole').value;
+            
+            console.log('Logged in with:', email, password, role);
+            // Send login data to your backend to verify the user
+            // If successful, redirect based on role (Driver or Car Owner)
+        }
+    </script>
+</body>
+</html>

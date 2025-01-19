@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive with Us – Flexible Earnings Await</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .header, .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+        .header h1, .footer h3 {
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        .cta-button {
+            margin-top: 10px;
+        }
+        .video-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .success-stories blockquote {
+            border-left: 5px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+        }
+        .pricing-card {
+            border-radius: 8px;
+            background: #f9f9f9;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .pricing-card .btn {
+            width: 100%;
+        }
+
+
+      
+    .calculator {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background-color: #f8f9fa;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+    }
+    .calculator .display {
+        margin-bottom: 10px;
+        background-color: #fff;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+        padding: 10px;
+        text-align: right;
+        font-size: 24px;
+    }
+    .calculator .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+    .calculator .buttons button {
+        font-size: 18px;
+        padding: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .calculator .buttons button:hover {
+        background-color: #0056b3;
+    }
+
+
+    </style>
+</head>
+<body>
+
+<div class="header text-center">
+    <h1>Drive with Us – Flexible Earnings Await</h1>
+</div>
+
+<div class="container mt-4">
+    <div class="introduction mb-4">
+        <p class="lead">Become a driver on our platform and enjoy flexible hours while earning money!</p>
+    </div>
+
+    <div class="unique-offers mb-4">
+        <h2>Unique Offers for Drivers</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Sign-Up Bonuses:</strong> Incentives for completing your first rides.</li>
+            <li class="list-group-item"><strong>Referral Programs:</strong> Rewards for referring new drivers to join.</li>
+            <li class="list-group-item"><strong>Weekly Payouts:</strong> Convenient payments without hidden fees.</li>
+        </ul>
+    </div>
+
+    <div class="driver-verification mb-4">
+        <h2>Driver Verification Process</h2>
+        <p>To ensure safety and trust, you will need to upload documents such as your driver’s license, proof of insurance, and your vehicle registration.</p>
+        <a href="#" class="btn btn-primary cta-button">Submit Your Documents</a>
+    </div>
+
+    <div class="mobile-app mb-4">
+        <h2>Download Our Driver App</h2>
+        <p>Manage your rides on the go with our mobile app. Available on:</p>
+        <div>
+            <a href="#" class="btn btn-light me-2"><img src="{% static 'img/apple-app-store.png' %}" alt="Download on the App Store" /></a>
+            <a href="#" class="btn btn-light"><img src="{% static 'img/google-play-store.png' %}" alt="Get it on Google Play" /></a>
+        </div>
+    </div>
+
+    <div class="pricing-information mb-4">
+        <h2>Driver Earnings Breakdown</h2>
+        <p>Your earnings are based on mileage, time spent on each ride, and occasional surge pricing during peak hours. You will also receive a detailed breakdown after each ride.</p>
+    </div>
+
+    <div class="referral-program mb-4">
+        <h2>Referral Program</h2>
+        <p>Refer a friend and earn bonuses! For each driver you refer who completes their first ride, you will receive a reward of $50.</p>
+    </div>
+
+    <div class="driver-success-stories mb-4">
+        <h2>Driver Success Stories</h2>
+        <blockquote>"I love the flexibility! I can work when I want." - Mike T.</blockquote>
+        <blockquote>"This platform has allowed me to meet new people and drive more in my free time!" - Jane L.</blockquote>
+    </div>
+
+    <div class="video-container mb-4">
+        <h2>How to Get Started</h2>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/your-video-link" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="support-resources mb-4">
+        <h2>Driver Support Resources</h2>
+        <p>Access training materials, tips for maximizing your earnings, and more.</p>
+        <a href="#" class="btn btn-secondary cta-button">Access Driver Resources</a>
+    </div>
+
+    <div class="calculator-tool mb-4">
+        <h2>Earnings Calculator</h2>
+        <p>Use our calculator to estimate your earnings based on ride distance, time, and surge pricing.</p>
+        <a href="#" class="btn btn-warning cta-button" data-bs-toggle="modal" data-bs-target="#calculatorModal">Try the Calculator</a>
+    </div>
+    
+    <!-- Calculator Modal -->
+    <div class="modal fade" id="calculatorModal" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="calculatorModalLabel">Earnings Calculator</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="calculator">
+                        <div class="display">
+                            <input type="text" id="calculatorDisplay" readonly>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-light" onclick="appendNumber(1)">1</button>
+                            <button class="btn btn-light" onclick="appendNumber(2)">2</button>
+                            <button class="btn btn-light" onclick="appendNumber(3)">3</button>
+                            <button class="btn btn-light" onclick="appendOperator('+')">+</button>
+                            <button class="btn btn-light" onclick="appendNumber(4)">4</button>
+                            <button class="btn btn-light" onclick="appendNumber(5)">5</button>
+                            <button class="btn btn-light" onclick="appendNumber(6)">6</button>
+                            <button class="btn btn-light" onclick="appendOperator('-')">-</button>
+                            <button class="btn btn-light" onclick="appendNumber(7)">7</button>
+                            <button class="btn btn-light" onclick="appendNumber(8)">8</button>
+                            <button class="btn btn-light" onclick="appendNumber(9)">9</button>
+                            <button class="btn btn-light" onclick="appendOperator('*')">*</button>
+                            <button class="btn btn-light" onclick="appendNumber(0)">0</button>
+                            <button class="btn btn-light" onclick="clearDisplay()">C</button>
+                            <button class="btn btn-light" onclick="calculateResult()">=</button>
+                            <button class="btn btn-light" onclick="appendOperator('/')">/</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+    
+        // Append number to display
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('calculatorDisplay').value = currentInput;
+        }
+    
+        // Append operator to display
+        function appendOperator(operator) {
+            currentInput += ' ' + operator + ' ';
+            document.getElementById('calculatorDisplay').value = currentInput;
+        }
+    
+        // Clear display
+        function clearDisplay() {
+            currentInput = '';
+            document.getElementById('calculatorDisplay').value = currentInput;
+        }
+    
+        // Calculate the result
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput).toString();
+                document.getElementById('calculatorDisplay').value = currentInput;
+            } catch (e) {
+                document.getElementById('calculatorDisplay').value = 'Error';
+            }
+        }
+    </script>
+    
+
+    <div class="faq mb-4">
+        <h2>Frequently Asked Questions</h2>
+        <p><strong>Q:</strong> Do I need my own car?<br><strong>A:</strong> Yes, but we can connect you with rental options if needed.</p>
+        <p><strong>Q:</strong> How do I get paid?<br><strong>A:</strong> We offer weekly payouts directly to your bank account or mobile wallet.</p>
+    </div>
+
+    <div class="driver-community mb-4">
+        <h2>Join Our Driver Community</h2>
+        <p>Connect with other drivers, share experiences, and get advice.</p>
+        <a href="#" class="btn btn-info cta-button">Join the Community</a>
+    </div>
+
+    <div class="terms-conditions mb-4">
+        <h2>Terms & Conditions for Drivers</h2>
+        <p>Make sure to review our driver agreement and platform policies before getting started.</p>
+        <a href="#" class="btn btn-danger cta-button">Read Terms & Conditions</a>
+    </div>
+
+    <div class="pricing-cards mb-4 row">
+        <div class="col-md-4">
+            <div class="pricing-card text-center">
+                <h3>Basic Plan</h3>
+                <p>$10/Month</p>
+                <p>Get access to basic support and standard features.</p>
+                <a href="#" class="btn btn-primary">Select Plan</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="pricing-card text-center">
+                <h3>Pro Plan</h3>
+                <p>$25/Month</p>
+                <p>Get priority support and advanced features.</p>
+                <a href="#" class="btn btn-primary">Select Plan</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="pricing-card text-center">
+                <h3>Premium Plan</h3>
+                <p>$50/Month</p>
+                <p>Maximize your earnings with premium support and top-tier features.</p>
+                <a href="#" class="btn btn-primary">Select Plan</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="call-to-action text-center">
+        <a href="website\clients.html" class="btn btn-success btn-lg">Sign Up to Drive!</a>
+    </div>
+</div>
+
+<div class="footer text-center mt-4">
+    <h3>Contact Us | Follow Us on Social Media</h3>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
